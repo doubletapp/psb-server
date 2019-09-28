@@ -2,6 +2,7 @@ import argparse
 
 from flask import Flask
 from flask_mongoengine import MongoEngine
+from api.handler import api_blueprint
 
 from settings import MONGODB_SETTINGS
 
@@ -22,8 +23,10 @@ def build_app():
     app.config['MONGODB_SETTINGS'] = MONGODB_SETTINGS
     db = MongoEngine(app)
 
+    app.register_blueprint(api_blueprint)
 
     return app
+
 
 application = build_app()
 
