@@ -50,6 +50,8 @@ def analys_request(new_request):
 
     posts = json.loads(new_request.data["posts"])
     folder = f"users/imgs_{new_request.vk_user_id}"
+    if not os.path.isdir(folder):
+        os.mkdir(folder)
     try:
         count = 0
         for item in posts:
@@ -60,8 +62,6 @@ def analys_request(new_request):
                         for size in attachment['photo']['sizes']:
                             if size['type'] == 'q':
                                 url = size['url']
-                                if not os.path.isdir(folder):
-                                    os.mkdir(folder)
                                 urllib.request.urlretrieve(url, f"{folder}/{count}")
                                 count += 1
                                 time.sleep(0.1)
