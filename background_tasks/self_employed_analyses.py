@@ -4,7 +4,7 @@ import urllib
 import sys
 import time
 import traceback
-import runpy as np
+import numpy as np
 sys.path.append('/home/serj/psb-server/')
 
 from flask import Flask
