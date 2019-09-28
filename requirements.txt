@@ -7,3 +7,4 @@ sklearn
 tensorflow-gpu
 keras
 numpy
+Pillow
