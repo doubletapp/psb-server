@@ -1,4 +1,6 @@
 import json
+import sys
+sys.path.append('/home/serj/psb-server/')
 
 from flask import Flask
 from flask_mongoengine import MongoEngine
@@ -16,4 +18,4 @@ db = MongoEngine(app)
 for new_request in VkUserRequest.objects(status="new"):
     new_request.status = "in-progress"
     # new_request.save()
-    posts = json.loads(new_request.data["posts"])
+    posts = json.loads(new_request.data.get(["posts"]))
