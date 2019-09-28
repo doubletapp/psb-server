@@ -10,7 +10,7 @@ from flask import Flask
 from flask_mongoengine import MongoEngine
 
 from keras.models import load_model
-model = load_model("obj_gen_224_128_02_tl0.3169.h5")
+model = load_model("0_nails_cakes_unb_01_va0.9561.h5")
 
 from PIL import Image
 IMAGE_SIZE = 128
