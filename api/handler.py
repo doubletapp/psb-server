@@ -1,6 +1,4 @@
 import json
-import random
-import request
 from core.models import VkUserRequest
 
 from flask import Blueprint, request
