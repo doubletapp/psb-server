@@ -2,3 +2,8 @@ Flask
 pymongo
 mongoengine
 flask-mongoengine
+requests
+sklearn
+tensorflow-gpu
+keras
+numpy
