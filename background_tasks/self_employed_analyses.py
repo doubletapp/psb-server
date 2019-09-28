@@ -3,6 +3,7 @@ import os
 import urllib
 import sys
 import time
+import traceback
 import runpy as np
 sys.path.append('/home/serj/psb-server/')
 
@@ -97,7 +98,10 @@ def analys_request(new_request):
 
             new_request.status = "done"
             new_request.save()
-    except:
+    except Exception as ex:
+
+        print(traceback.format_exc())
+
         new_request.result["result"] = False
         new_request.status = "done"
         new_request.save()
