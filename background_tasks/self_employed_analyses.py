@@ -46,6 +46,7 @@ db = MongoEngine(app)
 def analys_request(new_request):
     new_request.status = "in-progress"
     new_request.save()
+
     posts = json.loads(new_request.data["posts"])
     folder = f"users/imgs_{new_request.vk_user_id}"
     try:
@@ -68,11 +69,17 @@ def analys_request(new_request):
         imgs = load_imgs(folder)
         preds = model.predict(imgs)
 
+        print("preds", preds)
+
         types = [0] * 3
         for i, p in enumerate(preds):
             types[np.argmax(p)] += 1
 
+        print("types", types)
+
         result = np.array(types) / sum(types)
+
+        print("result", result)
 
         if max(result[1], result[2]) > 0.01:
             if result[2] > result[1]:
@@ -88,10 +95,14 @@ def analys_request(new_request):
                     "subtitile": "Наши сервисы помогут организовать работу",
                 }
 
+            new_request.status = "done"
             new_request.save()
     except:
         new_request.result["result"] = False
+        new_request.status = "done"
         new_request.save()
+
+
 
 
 for new_request in VkUserRequest.objects(status="new"):
