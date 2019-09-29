@@ -17,18 +17,21 @@ def pproc():
 
 
 def check_self_employed():
+    try:
+        data = request.json.get('data')
+        vk_user_id = request.json.get('vk_user_id')
 
-    data = request.json.get('data')
-    vk_user_id = request.json.get('vk_user_id')
+        new_request = VkUserRequest.objects.create(data=data, vk_user_id=vk_user_id)
 
-    new_request = VkUserRequest.objects.create(data=data, vk_user_id=vk_user_id)
+        result = {
+            "request_id": str(new_request.id)
+        }
+        threading.Thread(target=pproc, args=(),).start()
 
-    result = {
-        "request_id": str(new_request.id)
-    }
-    threading.Thread(target=pproc, args=(),).start()
+        return json.dumps(result)
+    except Exception as ex:
+        print(traceback.format_exc())
 
-    return json.dumps(result)
 
 
 def check_request():
