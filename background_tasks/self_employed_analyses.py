@@ -99,9 +99,9 @@ def analys_request(new_request):
                 if predictions[0][1] > 0.5:
                     new_request.result = {
                         "result": True,
-                        "image_url": "https://sun9-8.userapi.com/c858416/v858416115/893e3/0h4NZkHn1aI.jpg",
-                        "title": "Делай маникюр легально",
-                        "subtitile": "Наши сервисы помогут организовать работу",
+                        "image_url": "https://sun9-22.userapi.com/c858416/v858416115/893d9/wyVJVTb8aRM.jpg",
+                        "title": "Сдавай кватиру",
+                        "subtitile": "Удобно и легально",
                     }
                     new_request.save()
                     return True
