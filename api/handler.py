@@ -20,7 +20,8 @@ def check_self_employed():
     result = {
         "request_id": str(new_request.id)
     }
-
+    print("start asinc")
+    print(result)
     loop.run_until_complete(analys_request(new_request))
 
     return json.dumps(result)
