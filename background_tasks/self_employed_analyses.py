@@ -98,9 +98,12 @@ def analys_request(new_request):
                     "title": "Принимай клиентов легально",
                     "subtitile": "Наши сервисы помогут организовать работу",
                 }
+        else:
+            new_request.result["result"] = False
 
-            new_request.status = "done"
-            new_request.save()
+        new_request.status = "done"
+        new_request.save()
+
     except Exception as ex:
 
         print(traceback.format_exc())
