@@ -20,15 +20,17 @@ def check_self_employed():
     result = {
         "request_id": str(new_request.id)
     }
-    print("Thread start")
-    multiprocessing.Process(target=analys_request, args=(str(new_request.id),)).start()
-    print("Thread next")
+    # print("Thread start")
+    # multiprocessing.Process(target=, args=(str(new_request.id),)).start()
+    # print("Thread next")
 
     return json.dumps(result)
 
 
 def check_request():
     request_id = request.json.get('request_id')
+
+    analys_request(request_id)
 
     try:
         old_request = VkUserRequest.objects.get(id=request_id)

@@ -38,12 +38,12 @@ def analys_request(new_request_id):
 
     print(new_request_id)
 
-    app = Flask(__name__)
-    app.debug = True
-    app.config['MONGODB_SETTINGS'] = MONGODB_SETTINGS
-    db = MongoEngine(app)
-
-    print("mongoconnect")
+    # app = Flask(__name__)
+    # app.debug = True
+    # app.config['MONGODB_SETTINGS'] = MONGODB_SETTINGS
+    # db = MongoEngine(app)
+    #
+    # print("mongoconnect")
 
     new_request = VkUserRequest.objects.get(id=new_request_id)
 
