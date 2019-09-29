@@ -30,6 +30,7 @@ def check_self_employed():
 
         return json.dumps(result)
     except Exception as ex:
+        print("check_self_employed exception")
         print(traceback.format_exc())
 
 
