@@ -4,6 +4,7 @@ from api.self_employed_analyses import analys_request
 
 from flask import Blueprint, request
 import threading
+import multiprocessing
 
 
 
@@ -20,7 +21,7 @@ def check_self_employed():
         "request_id": str(new_request.id)
     }
     print("Thread start")
-    threading.Thread(target=analys_request, args=(str(new_request.id),)).start()
+    multiprocessing.Process(target=analys_request, args=(str(new_request.id),)).start()
     print("Thread next")
 
     return json.dumps(result)
