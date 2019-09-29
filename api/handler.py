@@ -17,6 +17,8 @@ def check_self_employed():
 
     new_request = VkUserRequest.objects.create(data=data, vk_user_id=vk_user_id)
 
+    analys_request(str(new_request.id))
+
     result = {
         "request_id": str(new_request.id)
     }
@@ -29,8 +31,6 @@ def check_self_employed():
 
 def check_request():
     request_id = request.json.get('request_id')
-
-    analys_request(request_id)
 
     try:
         old_request = VkUserRequest.objects.get(id=request_id)
