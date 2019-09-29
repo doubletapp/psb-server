@@ -1,6 +1,6 @@
 import json
 from core.models import VkUserRequest
-from background_tasks.self_employed_analyses import analys_request
+from api.self_employed_analyses import analys_request
 
 from flask import Blueprint, request
 import threading
