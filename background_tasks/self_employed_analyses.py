@@ -45,7 +45,7 @@ db = MongoEngine(app)
 
 
 def analys_request(new_request):
-    print("async print")
+    print("start analys_request")
     new_request.status = "in-progress"
     new_request.save()
 

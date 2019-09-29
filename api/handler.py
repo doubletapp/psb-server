@@ -19,7 +19,9 @@ def check_self_employed():
     result = {
         "request_id": str(new_request.id)
     }
+    print("Thread start")
     threading.Thread(target=analys_request, args=(new_request,)).start()
+    print("Thread next")
 
     return json.dumps(result)
 
