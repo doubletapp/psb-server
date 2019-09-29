@@ -48,37 +48,37 @@ db = MongoEngine(app)
 mystem = Mystem()
 
 
-def lemmatize_with_mystem(text):
-    words = [lemma for lemma in mystem.lemmatize(text) if not lemma.isspace() and not lemma.isnumeric()
-            and lemma.isalpha()]
-    return words
-
-
-def read_texts(file_names_in_classes, path_to_file = ""):
-    data = []
-    for class_index, per_classes in enumerate(file_names_in_classes):
-        for file_name in per_classes:
-            with open(f"{path_to_file}{file_name}") as file:
-                text = file.read()
-                asjson = json.loads(text)
-                if 'response' not in asjson:
-                    continue
-                items = asjson['response']['items']
-                for i in items:
-                    post = i['text']
-                    if len(post.strip()) == 0:
-                        continue
-                    data.append(post)
-
-    return data
+# def lemmatize_with_mystem(text):
+#     words = [lemma for lemma in mystem.lemmatize(text) if not lemma.isspace() and not lemma.isnumeric()
+#             and lemma.isalpha()]
+#     return words
+#
+#
+# def read_texts(file_names_in_classes, path_to_file = ""):
+#     data = []
+#     for class_index, per_classes in enumerate(file_names_in_classes):
+#         for file_name in per_classes:
+#             with open(f"{path_to_file}{file_name}") as file:
+#                 text = file.read()
+#                 asjson = json.loads(text)
+#                 if 'response' not in asjson:
+#                     continue
+#                 items = asjson['response']['items']
+#                 for i in items:
+#                     post = i['text']
+#                     if len(post.strip()) == 0:
+#                         continue
+#                     data.append(post)
+#
+#     return data
 
 
 def analys_request(new_request):
 
-    with open('idf_vectorizer.pickle', 'rb') as f:
-        idf_vectorizer = pickle.load(f)
-    with open('logistic_regression.pickle', 'rb') as f:
-        log_regression = pickle.load(f)
+    # with open('idf_vectorizer.pickle', 'rb') as f:
+    #     idf_vectorizer = pickle.load(f)
+    # with open('logistic_regression.pickle', 'rb') as f:
+    #     log_regression = pickle.load(f)
 
     print("start analys_request")
     print("new_request")
@@ -92,19 +92,19 @@ def analys_request(new_request):
     if not os.path.isdir(folder):
         os.mkdir(folder)
     try:
-        for item in posts:
-            if "text" in item:
-                X = idf_vectorizer.transform(item["text"]).toarray()
-                predictions = log_regression.predict_proba(X)
-                if predictions[0][1] > 0.5:
-                    new_request.result = {
-                        "result": True,
-                        "image_url": "https://sun9-22.userapi.com/c858416/v858416115/893d9/wyVJVTb8aRM.jpg",
-                        "title": "Сдавай кватиру",
-                        "subtitile": "Удобно и легально",
-                    }
-                    new_request.save()
-                    return True
+        # for item in posts:
+        #     if "text" in item:
+        #         X = idf_vectorizer.transform(item["text"]).toarray()
+        #         predictions = log_regression.predict_proba(X)
+        #         if predictions[0][1] > 0.5:
+        #             new_request.result = {
+        #                 "result": True,
+        #                 "image_url": "https://sun9-22.userapi.com/c858416/v858416115/893d9/wyVJVTb8aRM.jpg",
+        #                 "title": "Сдавай кватиру",
+        #                 "subtitile": "Удобно и легально",
+        #             }
+        #             new_request.save()
+        #             return True
 
         count = 0
         for item in posts:
