@@ -68,6 +68,9 @@ def analys_request(new_request):
                                 break
 
         imgs = load_imgs(folder)
+        if len(imgs.shape) < 4:
+            raise Exception("len(imgs.shape) < 4:")
+
         preds = model.predict(imgs)
 
         print("preds", preds)
