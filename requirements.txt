@@ -8,3 +8,4 @@ tensorflow-gpu
 keras
 numpy
 Pillow
+gevent

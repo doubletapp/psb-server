@@ -5,10 +5,12 @@ from api.self_employed_analyses import analys_request
 from flask import Blueprint, request
 import traceback
 import threading
+import subprocess
 import multiprocessing
 
 
-
+def pproc():
+    subprocess.call("/home/serj/psb-server/venv/bin/python /home/serj/psb-server/background_tasks/self_employed_analyses.py ")
 
 
 def check_self_employed():
@@ -18,16 +20,16 @@ def check_self_employed():
 
     new_request = VkUserRequest.objects.create(data=data, vk_user_id=vk_user_id)
 
-    try:
-        analys_request(str(new_request.id))
-    except Exception as ex:
-        print(traceback.format_exc())
+    # try:
+    #     analys_request(str(new_request.id))
+    # except Exception as ex:
+    #     print(traceback.format_exc())
 
     result = {
         "request_id": str(new_request.id)
     }
     # print("Thread start")
-    # multiprocessing.Process(target=, args=(str(new_request.id),)).start()
+    threading.Thread(target=pproc, args=(),).start()
     # print("Thread next")
 
     return json.dumps(result)
