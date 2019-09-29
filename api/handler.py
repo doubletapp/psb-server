@@ -3,6 +3,7 @@ from core.models import VkUserRequest
 from api.self_employed_analyses import analys_request
 
 from flask import Blueprint, request
+import traceback
 import threading
 import multiprocessing
 
@@ -17,7 +18,10 @@ def check_self_employed():
 
     new_request = VkUserRequest.objects.create(data=data, vk_user_id=vk_user_id)
 
-    analys_request(str(new_request.id))
+    try:
+        analys_request(str(new_request.id))
+    except Exception as ex:
+        print(traceback.format_exc())
 
     result = {
         "request_id": str(new_request.id)
