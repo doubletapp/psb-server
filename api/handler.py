@@ -22,7 +22,7 @@ def check_self_employed():
     }
     print("start asinc")
     print(result)
-    loop.run_until_complete(analys_request(new_request))
+    asyncio.run_coroutine_threadsafe(analys_request(new_request), loop)
 
     return json.dumps(result)
 
