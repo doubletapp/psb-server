@@ -102,7 +102,7 @@ def analys_request(new_request):
                 new_request.result = {
                     "result": True,
                     "image_url": "https://sun9-8.userapi.com/c858416/v858416115/893e3/0h4NZkHn1aI.jpg",
-                    "title": "Принимай клиентов легально",
+                    "title": "Делай маникюр легально",
                     "subtitile": "Наши сервисы помогут организовать работу",
                 }
         else:

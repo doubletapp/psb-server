@@ -1,12 +1,10 @@
 import json
 from core.models import VkUserRequest
-from api.self_employed_analyses import analys_request
 
 from flask import Blueprint, request
 import traceback
 import threading
 import subprocess
-import multiprocessing
 
 
 def pproc():
@@ -17,6 +15,7 @@ def pproc():
     except Exception as ex:
         print(traceback.format_exc())
 
+
 def check_self_employed():
 
     data = request.json.get('data')
@@ -24,17 +23,10 @@ def check_self_employed():
 
     new_request = VkUserRequest.objects.create(data=data, vk_user_id=vk_user_id)
 
-    # try:
-    #     analys_request(str(new_request.id))
-    # except Exception as ex:
-    #     print(traceback.format_exc())
-
     result = {
         "request_id": str(new_request.id)
     }
-    # print("Thread start")
     threading.Thread(target=pproc, args=(),).start()
-    # print("Thread next")
 
     return json.dumps(result)
 
