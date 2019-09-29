@@ -8,4 +8,5 @@ tensorflow-gpu
 keras
 numpy
 Pillow
-gevent
+pymystem3
+pickle
