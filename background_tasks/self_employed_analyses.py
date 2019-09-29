@@ -38,10 +38,10 @@ from settings import MONGODB_SETTINGS
 from core.models import VkUserRequest
 from pprint import pprint
 
-# app = Flask(__name__)
-# app.debug = True
-# app.config['MONGODB_SETTINGS'] = MONGODB_SETTINGS
-# db = MongoEngine(app)
+app = Flask(__name__)
+app.debug = True
+app.config['MONGODB_SETTINGS'] = MONGODB_SETTINGS
+db = MongoEngine(app)
 
 
 def analys_request(new_request):
