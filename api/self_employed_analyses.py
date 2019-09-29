@@ -97,12 +97,14 @@ def analys_request(new_request_id):
         if max(result[1], result[2]) > 0.01:
             if result[2] > result[1]:
                 new_request.result = {
+                    "result": True,
                     "image_url": "https://sun9-8.userapi.com/c858416/v858416115/893ed/_z06T5vFG_o.jpg",
                     "title": "Клиенты любят вашу выпечку",
                     "subtitile": "Радуйте их, а о налогах позаботимся мы",
                 }
             else:
                 new_request.result = {
+                    "result": True,
                     "image_url": "https://sun9-8.userapi.com/c858416/v858416115/893e3/0h4NZkHn1aI.jpg",
                     "title": "Принимай клиентов легально",
                     "subtitile": "Наши сервисы помогут организовать работу",
