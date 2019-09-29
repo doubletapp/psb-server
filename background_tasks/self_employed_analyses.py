@@ -37,7 +37,7 @@ def load_imgs(folder):
 from settings import MONGODB_SETTINGS
 
 from core.models import VkUserRequest
-from pymystem3 import Mystem
+# from pymystem3 import Mystem
 from pprint import pprint
 
 app = Flask(__name__)
@@ -45,7 +45,7 @@ app.debug = True
 app.config['MONGODB_SETTINGS'] = MONGODB_SETTINGS
 db = MongoEngine(app)
 
-mystem = Mystem()
+# mystem = Mystem()
 
 
 # def lemmatize_with_mystem(text):
