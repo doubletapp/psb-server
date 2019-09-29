@@ -56,8 +56,11 @@ def analys_request(new_request_id):
     folder = f"users/imgs_{new_request.vk_user_id}"
     if not os.path.isdir(folder):
         os.mkdir(folder)
+
+    print("start try")
     try:
         count = 0
+        print("start posts")
         for item in posts:
             if 'attachments' in item:
                 attachments = item['attachments']
@@ -74,6 +77,8 @@ def analys_request(new_request_id):
         imgs = load_imgs(folder)
         if len(imgs.shape) < 4:
             raise Exception("len(imgs.shape) < 4:")
+
+        print("start preds")
 
         preds = model.predict(imgs)
 
