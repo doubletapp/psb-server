@@ -5,6 +5,11 @@ import time
 import traceback
 import numpy as np
 
+from flask import Flask
+from flask_mongoengine import MongoEngine
+from core.models import VkUserRequest
+from settings import MONGODB_SETTINGS
+
 from keras.models import load_model
 model = load_model("0_nails_cakes_unb_01_va0.9561.h5")
 
@@ -29,7 +34,14 @@ def load_imgs(folder):
     return imgs
 
 
-def analys_request(new_request):
+def analys_request(new_request_id):
+
+    app = Flask(__name__)
+    app.debug = True
+    app.config['MONGODB_SETTINGS'] = MONGODB_SETTINGS
+    db = MongoEngine(app)
+
+    new_request = VkUserRequest.objects.get(id=new_request_id)
 
     print("start analys_request")
     new_request.status = "in-progress"
