@@ -16,9 +16,6 @@ def check_self_employed():
     vk_user_id = request.json.get('vk_user_id')
 
     new_request = VkUserRequest.objects.create(data=data, vk_user_id=vk_user_id)
-    print(vk_user_id)
-    print()
-    print(data)
 
     result = {
         "request_id": str(new_request.id)
