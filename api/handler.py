@@ -1,7 +1,13 @@
 import json
 from core.models import VkUserRequest
+from background_tasks.self_employed_analyses import analys_request
 
 from flask import Blueprint, request
+import asyncio
+
+loop = asyncio.get_event_loop()
+
+
 
 
 def check_self_employed():
@@ -17,6 +23,8 @@ def check_self_employed():
     result = {
         "request_id": str(new_request.id)
     }
+
+    loop.run_until_complete(analys_request(new_request))
 
     return json.dumps(result)
 
