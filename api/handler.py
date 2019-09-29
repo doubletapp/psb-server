@@ -3,9 +3,8 @@ from core.models import VkUserRequest
 from background_tasks.self_employed_analyses import analys_request
 
 from flask import Blueprint, request
-import asyncio
+import threading
 
-loop = asyncio.get_event_loop()
 
 
 
@@ -20,9 +19,7 @@ def check_self_employed():
     result = {
         "request_id": str(new_request.id)
     }
-    print("start asinc")
-    print(result)
-    asyncio.run_coroutine_threadsafe(analys_request(new_request), loop)
+    threading.Thread(target=analys_request, args=(new_request,)).start()
 
     return json.dumps(result)
 

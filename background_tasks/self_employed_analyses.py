@@ -44,7 +44,7 @@ app.config['MONGODB_SETTINGS'] = MONGODB_SETTINGS
 db = MongoEngine(app)
 
 
-async def analys_request(new_request):
+def analys_request(new_request):
     print("async print")
     new_request.status = "in-progress"
     new_request.save()
