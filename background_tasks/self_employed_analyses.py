@@ -49,6 +49,7 @@ def analys_request(new_request):
     print("start analys_request")
     new_request.status = "in-progress"
     new_request.save()
+    print(new_request)
 
     posts = json.loads(new_request.data["posts"])
     folder = f"users/imgs_{new_request.vk_user_id}"
