@@ -10,8 +10,12 @@ import multiprocessing
 
 
 def pproc():
-    subprocess.call("/home/serj/psb-server/venv/bin/python /home/serj/psb-server/background_tasks/self_employed_analyses.py ")
-
+    try:
+        print("start pproc")
+        subprocess.call(["/home/serj/psb-server/venv/bin/python", "/home/serj/psb-server/background_tasks/self_employed_analyses.py"])
+        print("end pproc")
+    except Exception as ex:
+        print(traceback.format_exc())
 
 def check_self_employed():
 
